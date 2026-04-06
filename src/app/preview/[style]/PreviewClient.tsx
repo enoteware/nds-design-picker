@@ -103,7 +103,7 @@ export function PreviewClient({ styleObj }: { styleObj: DesignStyle }) {
             <input
               ref={logoInputRef}
               type="file"
-              accept="image/*"
+              accept="image/png, image/jpeg, image/jpg, image/webp"
               className="hidden"
               onChange={(e) => {
                 const file = e.target.files?.[0];
@@ -126,7 +126,7 @@ export function PreviewClient({ styleObj }: { styleObj: DesignStyle }) {
               ) : logoPreview ? (
                 "Change Logo"
               ) : (
-                "Upload Logo"
+                "Upload Logo (PNG, JPG, WebP)"
               )}
             </button>
           </div>
@@ -140,9 +140,9 @@ export function PreviewClient({ styleObj }: { styleObj: DesignStyle }) {
 
           {brandColors.length > 0 && (
             <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-muted-foreground">Suggested Brand Tokens:</span>
+              <span className="text-xs font-medium text-muted-foreground">Previewing primary color from logo:</span>
               <div className="flex items-center gap-1.5">
-                {brandColors.map((color) => (
+                {brandColors.slice(0, 1).map((color) => (
                   <button
                     key={color}
                     onClick={() => handleColorClick(color)}

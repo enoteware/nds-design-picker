@@ -11,18 +11,23 @@ export function StyleCard({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5">
-      {/* Iframe thumbnail */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+    <div
+      className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5 cursor-pointer h-64"
+      onClick={() => {
+        window.location.href = `/preview/${style.slug}`;
+      }}
+    >
+      {/* Iframe thumbnail (covers entire card) */}
+      <div className="absolute inset-0 bg-muted">
         {!loaded && (
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center z-10 bg-muted">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-muted-foreground border-t-transparent" />
           </div>
         )}
         <iframe
           src={style.previewUrl}
           title={`${style.name} preview`}
-          className="pointer-events-none h-[900px] w-[1200px] origin-top-left"
+          className="pointer-events-none h-[1280px] w-[1280px] origin-top-left"
           style={{ transform: "scale(0.25)", transformOrigin: "top left" }}
           onLoad={() => setLoaded(true)}
           loading="lazy"
@@ -30,27 +35,19 @@ export function StyleCard({
         />
       </div>
 
-      {/* Card content */}
-      <div className="flex flex-1 items-center justify-between gap-3 px-4 py-3">
+      {/* Overlay gradient for readability */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+
+      {/* Card content floating at the bottom */}
+      <div className="relative mt-auto flex items-center justify-between gap-3 px-4 py-3 z-10">
         <div className="min-w-0">
-          <h3 className="truncate text-sm font-semibold text-card-foreground">
+          <h3 className="truncate text-sm font-semibold text-white">
             {style.name}
           </h3>
-          <a
-            href={`/preview/${style.slug}`}
-            className="text-xs text-muted-foreground hover:text-accent transition-colors"
-          >
-            View full preview &rarr;
-          </a>
+          <span className="text-xs text-white/70">
+            View preview &rarr;
+          </span>
         </div>
-        <button
-          onClick={() => {
-            window.location.href = `/preview/${style.slug}`;
-          }}
-          className="shrink-0 rounded-lg bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground transition-colors hover:bg-accent/90 cursor-pointer"
-        >
-          Choose
-        </button>
       </div>
     </div>
   );
