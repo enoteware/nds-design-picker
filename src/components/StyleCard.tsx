@@ -5,10 +5,8 @@ import type { DesignStyle } from "@/lib/styles";
 
 export function StyleCard({
   style,
-  onChoose,
 }: {
   style: DesignStyle;
-  onChoose: (style: DesignStyle) => void;
 }) {
   const [loaded, setLoaded] = useState(false);
 
@@ -39,16 +37,16 @@ export function StyleCard({
             {style.name}
           </h3>
           <a
-            href={style.previewUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/preview/${style.slug}`}
             className="text-xs text-muted-foreground hover:text-accent transition-colors"
           >
             View full preview &rarr;
           </a>
         </div>
         <button
-          onClick={() => onChoose(style)}
+          onClick={() => {
+            window.location.href = `/preview/${style.slug}`;
+          }}
           className="shrink-0 rounded-lg bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground transition-colors hover:bg-accent/90 cursor-pointer"
         >
           Choose

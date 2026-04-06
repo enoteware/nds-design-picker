@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { getStyles, type DesignStyle } from "@/lib/styles";
+import { getStyles } from "@/lib/styles";
 import { StyleCard } from "@/components/StyleCard";
-import { SubmitForm } from "@/components/SubmitForm";
 
 const styles = getStyles();
 
 export default function Home() {
-  const [chosen, setChosen] = useState<DesignStyle | null>(null);
   const [search, setSearch] = useState("");
 
   const filtered = styles.filter((s) =>
@@ -48,7 +46,6 @@ export default function Home() {
             <StyleCard
               key={style.slug}
               style={style}
-              onChoose={setChosen}
             />
           ))}
         </div>
@@ -59,10 +56,6 @@ export default function Home() {
           </p>
         )}
       </main>
-
-      {chosen && (
-        <SubmitForm style={chosen} onClose={() => setChosen(null)} />
-      )}
     </>
   );
 }
