@@ -50,7 +50,7 @@ export function SubmitForm({
       body.append("company", form.company);
       body.append(
         "notes",
-        `Design style: ${style.name} (${style.slug})\n\n${form.notes}`
+        `Selected foundational style: Inspired by ${style.name} (${style.slug})\n\n${form.notes}`
       );
       if (logoFile) {
         body.append("logo", logoFile);
@@ -83,10 +83,10 @@ export function SubmitForm({
         <div className="mb-5 flex items-center justify-between">
           <div>
             <h2 className="text-lg font-semibold text-card-foreground">
-              Get started with {style.name}
+              Design inspired by {style.name}
             </h2>
-            <p className="text-sm text-muted-foreground">
-              Fill in your details and we&apos;ll set up your project.
+            <p className="text-sm text-muted-foreground mt-1">
+              We&apos;ll use this style as a foundation and fully customize the colors, typography, and UI to match your actual logo and branding.
             </p>
           </div>
           <button

@@ -18,7 +18,7 @@ export function PreviewClient({ styleObj }: { styleObj: DesignStyle }) {
             &larr; Back
           </Link>
           <div className="hidden sm:block h-6 w-px bg-border" />
-          <h1 className="text-base sm:text-lg font-semibold text-card-foreground capitalize truncate max-w-[150px] sm:max-w-xs">{styleObj.name} Preview</h1>
+          <h1 className="text-base sm:text-lg font-semibold text-card-foreground capitalize truncate max-w-[150px] sm:max-w-xs">Inspired by {styleObj.name}</h1>
         </div>
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center rounded-lg bg-muted p-1">
@@ -39,7 +39,7 @@ export function PreviewClient({ styleObj }: { styleObj: DesignStyle }) {
             onClick={() => setShowForm(true)}
             className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90 cursor-pointer"
           >
-            Choose this style
+            Use this foundation
           </button>
         </div>
       </header>

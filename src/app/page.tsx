@@ -22,7 +22,7 @@ export default function Home() {
               NDS Design Picker
             </h1>
             <p className="text-sm text-muted-foreground">
-              Choose a design system for your project
+              Select a foundational design system. We&apos;ll customize it with your logo, colors, and branding.
             </p>
           </div>
           <input
