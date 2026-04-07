@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NDS Design Picker",
-  description: "Browse and choose a design style for your project",
+  title: "noteware.dev — Design Picker",
+  description: "Browse foundational design systems inspired by the world's best tech companies. Upload your logo for AI-powered brand color extraction.",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
+      <body className="grain-overlay min-h-full flex flex-col font-sans bg-background text-foreground">
         {children}
       </body>
     </html>
