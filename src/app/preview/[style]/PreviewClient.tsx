@@ -150,27 +150,49 @@ export function PreviewClient({ styleObj }: { styleObj: DesignStyle }) {
 
           {/* Analysis progress bar */}
           {analyzingLogo && (
-            <div className="flex items-center gap-2.5 animate-fade-in">
-              <div className="h-1 w-32 rounded-full bg-muted overflow-hidden">
-                <div
-                  className="h-full bg-accent rounded-full transition-all duration-300 ease-out"
-                  style={{ width: `${analysisProgress}%` }}
-                />
+            <div className="flex items-center gap-4 animate-fade-in">
+              <div className="relative h-7 w-7 rounded-md border border-border bg-card p-0.5 shrink-0 shadow-sm overflow-hidden">
+                {logoPreview && (
+                  <>
+                    <img
+                      src={logoPreview}
+                      alt="Analyzing..."
+                      className="h-full w-full object-contain opacity-50 blur-[0.5px]"
+                    />
+                    <div className="absolute inset-x-0 h-[2px] bg-accent/80 shadow-[0_0_8px_var(--accent)] animate-scanning z-10" />
+                  </>
+                )}
               </div>
-              <span className="text-[11px] font-mono text-muted-foreground tabular-nums">
-                {Math.round(analysisProgress)}%
-              </span>
+              <div className="flex flex-col gap-1">
+                <div className="h-1 w-32 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className="h-full bg-accent rounded-full transition-all duration-500 ease-out"
+                    style={{ width: `${analysisProgress}%` }}
+                  />
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-[9px] font-bold uppercase tracking-tighter text-accent/80 animate-pulse">
+                    Analyzing Spectrum
+                  </span>
+                  <span className="text-[10px] font-mono text-muted-foreground tabular-nums">
+                    {Math.round(analysisProgress)}%
+                  </span>
+                </div>
+              </div>
             </div>
           )}
 
           {logoPreview && !analyzingLogo && (
-            <div className="h-7 w-7 rounded-md border border-border bg-card p-0.5 shrink-0 shadow-sm animate-scale-in">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={logoPreview}
-                alt="Uploaded logo"
-                className="h-full w-full object-contain"
-              />
+            <div className="relative h-7 w-7">
+              <div className="absolute inset-0 rounded-full border border-accent/30 animate-pulse-ring" />
+              <div className="relative h-7 w-7 rounded-md border border-border bg-card p-0.5 shrink-0 shadow-sm animate-scale-in z-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={logoPreview}
+                  alt="Uploaded logo"
+                  className="h-full w-full object-contain"
+                />
+              </div>
             </div>
           )}
 
@@ -210,14 +232,19 @@ export function PreviewClient({ styleObj }: { styleObj: DesignStyle }) {
       </div>
 
       {/* Iframe container */}
-      <main className="flex-1 w-full relative">
+      <main className="flex-1 w-full relative bg-muted/20">
         <iframe
           ref={iframeRef}
           src={
             theme === "light" ? styleObj.previewUrl : styleObj.darkPreviewUrl
           }
-          className="absolute inset-0 w-full h-full border-0 bg-background"
+          className="absolute inset-0 w-full h-full border-0 bg-transparent transition-opacity duration-1000 ease-in-out"
           title={`${styleObj.name} preview`}
+          onLoad={(e) => {
+            const target = e.target as HTMLIFrameElement;
+            target.style.opacity = "1";
+          }}
+          style={{ opacity: 0 }}
         />
       </main>
 

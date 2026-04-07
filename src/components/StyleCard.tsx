@@ -14,7 +14,7 @@ export function StyleCard({
 
   return (
     <div
-      className="animate-scale-in group relative flex flex-col overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 hover:border-border cursor-pointer"
+      className="animate-scale-in group relative flex flex-col overflow-hidden rounded-xl border border-border/50 bg-card shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.12),0_10px_10px_rgba(0,0,0,0.04)] hover:-translate-y-2 hover:border-border/80 cursor-pointer"
       style={{
         animationDelay: `${Math.min(index * 50, 500)}ms`,
         height: "280px",
